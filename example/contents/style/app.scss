@@ -1,0 +1,23 @@
+/* app.scss */
+
+@import "bootstrap";
+
+@mixin bg($color, $name) {
+	background: $color url(/assets/images/#{$name}) no-repeat;
+}
+@mixin bgpos($color, $name, $x, $y) {
+	background: $color url(/assets/images/#{$name}) no-repeat $x $y;
+}
+@mixin bgx($color, $name) {
+	background: $color url(/assets/images/#{$name}) repeat-x;
+}
+
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "arial";
+	font-size: 8pt;
+}

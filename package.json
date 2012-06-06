@@ -1,0 +1,10 @@
+{
+  "name": "wintersmith-sass",
+  "version": "0.1.0",
+  "author": "Timothy Marks <t@imothee.com>",
+  "description": "sass plugin for witnersmith",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "1.2.x"
+  }
+}
