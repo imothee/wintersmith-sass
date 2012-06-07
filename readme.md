@@ -5,10 +5,8 @@
 
 install:
 
-currently please download the folder into your wintersmith project and add the folder to the plugins
-`"./wintersmith-sass"` in the wintersmith config
-
-an npm module is planned
+`npm install wintersmith-sass -g`
+then add `wintersmith-sass` to your plugins in the wintersmith config
 
 usage:
 
