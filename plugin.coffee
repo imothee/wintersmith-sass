@@ -16,8 +16,12 @@ module.exports = (wintersmith, callback) ->
       if path.basename(@_filename).charAt(0) == '_'
         callback null
       else
-        file = path.join(@_base, @_filename)
-        c = child_process.exec 'sass '+file, (error, stdout, stderr) ->
+        command = path.join(@_base, @_filename)
+        
+        if @_source.search(/(\$compressed:)([ ]*)(true;)/ig) isnt -1
+          command = '-t compressed '+command
+        
+        c = child_process.exec 'sass '+command, (error, stdout, stderr) ->
           if error
             callback error
           else
