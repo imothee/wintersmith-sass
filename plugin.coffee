@@ -9,7 +9,7 @@ module.exports = (wintersmith, callback) ->
     constructor: (@_filename, @_base, @_source) ->
 
     getFilename: ->
-      @_filename.replace /scss$/, 'css'
+      @_filename.replace /scss/g, 'css'
 
     render: (locals, contents, templates, callback) ->
       
