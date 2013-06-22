@@ -8,6 +8,10 @@ install:
 `npm install wintersmith-sass -g`
 then add `wintersmith-sass` to your plugins in the wintersmith config
 
+versioning:
+
+If you are using wintersmith 1.0 please use version 0.1.3 else for wintersmith 2.0 please use version 0.2.0
+
 usage:
 
 wintersmith-sass requires the sass gem to be installed as it uses the sass cmd to compile the css files
