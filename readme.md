@@ -10,7 +10,7 @@ then add `wintersmith-sass` to your plugins in the wintersmith config
 
 versioning:
 
-If you are using wintersmith 1.0 please use version 0.1.3 else for wintersmith 2.0 please use version 0.2.0
+If you are using wintersmith 1.0 please use version 0.1.3 else for wintersmith 2.0 please use version 0.2.*
 
 usage:
 
@@ -20,3 +20,7 @@ Please see [sass](http://sass-lang.com/) for installation details
 If you want to have sass output a compressed file, simply add a sass variable `$compressed: true;` to each .scss file you want compressed.
 
 As per sass guidelines, all non partial .scss files will be parsed into a compiled css file and output. Partials, scss files beginning with _ (underscore) will be ignored unless imported.
+
+contributors:
+mpdreamz
+bmac
