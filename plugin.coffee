@@ -9,7 +9,7 @@ module.exports = (wintersmith, callback) ->
     constructor: (@_filename, @_source) ->
 
     getFilename: ->
-      @_filename.relative.replace /scss$/g, 'css'
+      @_filename.relative.replace /sass|scss$/g, 'css'
 
     getView: ->
       return (env, locals, contents, templates, callback) ->
@@ -36,4 +36,5 @@ module.exports = (wintersmith, callback) ->
 
 
   wintersmith.registerContentPlugin 'styles', '**/*.scss', SassPlugin
+  wintersmith.registerContentPlugin 'styles', '**/*.sass', SassPlugin
   callback()
