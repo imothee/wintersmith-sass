@@ -17,10 +17,11 @@ usage:
 wintersmith-sass requires the sass gem to be installed as it uses the sass cmd to compile the css files
 Please see [sass](http://sass-lang.com/) for installation details
 
-If you want to have sass output a compressed file, simply add a sass variable `$compressed: true;` to each .scss file you want compressed.
+If you want to have sass output a compressed file, simply add a sass variable `$compressed: true;` to each .scss or .sass file you want compressed.
 
 As per sass guidelines, all non partial .scss files will be parsed into a compiled css file and output. Partials, scss files beginning with _ (underscore) will be ignored unless imported.
 
 contributors:
 mpdreamz
 bmac
+gordonwritescode
