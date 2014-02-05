@@ -17,16 +17,19 @@ module.exports = (wintersmith, callback) ->
           callback null
         else
           command = [@_filename.full]
-          
-          if @_source.search(/(\$compressed:)([ ]*)(true;)/ig) isnt -1
-            command = ['-t',  'compressed', @_filename.full]
+
+          if @_source.search(/(\$compressed:)([ ]*)(true[;\n])/ig) isnt -1
+            command.unshift('-t',  'compressed')
+
+          if @_source.search(/(\$compass:)([ ]*)(true[;\n])/ig) isnt -1
+            command.unshift('--compass')
 
           c = child_process.execFile 'sass', command, (error, stdout, stderr) ->
             if error
               callback error
             else
               callback null, new Buffer stdout
-        
+
   SassPlugin.fromFile = (filename, callback) ->
     fs.readFile filename.full, (error, buffer) ->
       if error
