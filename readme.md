@@ -24,6 +24,8 @@ If you want to have sass compile with Compass imports available, simply add a sa
 As per sass guidelines, all non partial .scss files will be parsed into a compiled css file and output. Partials, scss files beginning with _ (underscore) will be ignored unless imported.
 
 contributors:
-mpdreamz
-bmac
-gordonwritescode
+
+* mpdreamz
+* bmac
+* gordonwritescode
+* stephenhutchings
