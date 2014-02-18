@@ -3,7 +3,8 @@ path = require 'path'
 fs = require 'fs'
 
 module.exports = (wintersmith, callback) ->
-  options = wintersmith.config.sass or {}
+  options   = wintersmith.config.sass or {}
+  exec_opts = options.exec_opts or {}
 
   class SassPlugin extends wintersmith.ContentPlugin
 
@@ -18,9 +19,12 @@ module.exports = (wintersmith, callback) ->
           callback null
         else
           command = [@_filename.full]
-          
-          if @_source.search(/(\$compressed:)([ ]*)(true;)/ig) isnt -1
-            command = ['-t',  'compressed', @_filename.full]
+
+          if @_source.search(/(\$compressed:)([ ]*)(true[;\n])/ig) isnt -1
+            command.unshift('-t',  'compressed')
+
+          if @_source.search(/(\$compass:)([ ]*)(true[;\n])/ig) isnt -1
+            command.unshift('--compass')
 
           onComplete = (error, stdout, stderr) ->
             if error
@@ -28,7 +32,7 @@ module.exports = (wintersmith, callback) ->
             else
               callback null, new Buffer stdout
 
-          c = child_process.execFile 'sass', command, options, onComplete
+          c = child_process.execFile 'sass', command, exec_opts, onComplete
         
   SassPlugin.fromFile = (filename, callback) ->
     fs.readFile filename.full, (error, buffer) ->
