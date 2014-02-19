@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/imothee/wintersmith-sass.png?label=ready)](https://waffle.io/imothee/wintersmith-sass)
 
 # wintersmith-sass
 
