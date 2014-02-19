@@ -3,6 +3,8 @@ path = require 'path'
 fs = require 'fs'
 
 module.exports = (wintersmith, callback) ->
+  options   = wintersmith.config.sass or {}
+  exec_opts = options.exec_opts or {}
 
   class SassPlugin extends wintersmith.ContentPlugin
 
@@ -24,12 +26,14 @@ module.exports = (wintersmith, callback) ->
           if @_source.search(/(\$compass:)([ ]*)(true[;\n])/ig) isnt -1
             command.unshift('--compass')
 
-          c = child_process.execFile 'sass', command, (error, stdout, stderr) ->
+          onComplete = (error, stdout, stderr) ->
             if error
               callback error
             else
               callback null, new Buffer stdout
 
+          c = child_process.execFile 'sass', command, exec_opts, onComplete
+        
   SassPlugin.fromFile = (filename, callback) ->
     fs.readFile filename.full, (error, buffer) ->
       if error
@@ -38,6 +42,5 @@ module.exports = (wintersmith, callback) ->
         callback null, new SassPlugin filename, buffer.toString()
 
 
-  wintersmith.registerContentPlugin 'styles', '**/*.scss', SassPlugin
-  wintersmith.registerContentPlugin 'styles', '**/*.sass', SassPlugin
+  wintersmith.registerContentPlugin 'styles', '**/*.*(scss|sass)', SassPlugin
   callback()
