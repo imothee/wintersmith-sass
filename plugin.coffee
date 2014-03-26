@@ -27,11 +27,14 @@ module.exports = (wintersmith, callback) ->
           if @_source.search(/(\$compass:)([ ]*)(true[;\n])/ig) isnt -1
             command.unshift('--compass')
 
+          if @_source.search(/(\$autoprefixer:)([ ]*)(true[;\n])/ig) isnt -1
+            useAutoprefixer = true
+
           onComplete = (error, stdout, stderr) ->
             if error
               callback error
             else
-              if @_source.search(/(\$autoprefixer:)([ ]*)(true[;\n])/ig) isnt -1
+              if useAutoprefixer
                 stdout = autoprefixer.process(stdout).css;
               callback null, new Buffer stdout
 
