@@ -5,6 +5,7 @@
   "description": "sass plugin for wintersmith",
   "license": "MIT",
   "dependencies": {
-    "coffee-script": "1.2.x"
+    "coffee-script": "1.2.x",
+    "autoprefixer": "1.1.x"
   }
 }
