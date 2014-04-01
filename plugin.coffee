@@ -1,6 +1,7 @@
 child_process = require 'child_process'
 path = require 'path'
 fs = require 'fs'
+autoprefixer = require 'autoprefixer'
 
 module.exports = (wintersmith, callback) ->
   options   = wintersmith.config.sass or {}
@@ -26,10 +27,15 @@ module.exports = (wintersmith, callback) ->
           if @_source.search(/(\$compass:)([ ]*)(true[;\n])/ig) isnt -1
             command.unshift('--compass')
 
+          if @_source.search(/(\$autoprefixer:)([ ]*)(true[;\n])/ig) isnt -1
+            useAutoprefixer = true
+
           onComplete = (error, stdout, stderr) ->
             if error
               callback error
             else
+              if useAutoprefixer
+                stdout = autoprefixer.process(stdout).css;
               callback null, new Buffer stdout
 
           c = child_process.execFile 'sass', command, exec_opts, onComplete
